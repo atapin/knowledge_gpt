@@ -2,29 +2,29 @@
 from langchain.prompts import PromptTemplate
 
 ## Use a shorter template to reduce the number of tokens in the prompt
-template = """Create a final answer to the given questions using the provided document excerpts(in no particular order) as references. ALWAYS include a "SOURCES" section in your answer including only the minimal set of sources needed to answer the question. If you are unable to answer the question, simply state that you do not know. Do not attempt to fabricate an answer and leave the SOURCES section empty.
+template = """Дай окончательный ответ на заданные вопросы, используя предоставленные выдержки из документов (в произвольном порядке) в качестве ссылок. ВСЕГДА включайте в свой ответ раздел «ИСТОЧНИКИ», включающий только минимальный набор источников, необходимый для ответа на вопрос. Если вы не можете ответить на вопрос, просто скажите, что вы не знаете. Не пытайтесь сфабриковать ответ и оставьте раздел ИСТОЧНИКИ пустым.
 
 ---------
 
-QUESTION: What  is the purpose of ARPA-H?
+ВОПРОС: Какова цель ARPA-H?
 =========
-Content: More support for patients and families. \n\nTo get there, I call on Congress to fund ARPA-H, the Advanced Research Projects Agency for Health. \n\nIt’s based on DARPA—the Defense Department project that led to the Internet, GPS, and so much more.  \n\nARPA-H will have a singular purpose—to drive breakthroughs in cancer, Alzheimer’s, diabetes, and more.
-Source: 1-32
-Content: While we’re at it, let’s make sure every American can get the health care they need. \n\nWe’ve already made historic investments in health care. \n\nWe’ve made it easier for Americans to get the care they need, when they need it. \n\nWe’ve made it easier for Americans to get the treatments they need, when they need them. \n\nWe’ve made it easier for Americans to get the medications they need, when they need them.
-Source: 1-33
-Content: The V.A. is pioneering new ways of linking toxic exposures to disease, already helping  veterans get the care they deserve. \n\nWe need to extend that same care to all Americans. \n\nThat’s why I’m calling on Congress to pass legislation that would establish a national registry of toxic exposures, and provide health care and financial assistance to those affected.
-Source: 1-30
+Содержание: Больше поддержки пациентам и их семьям. \n\nДля достижения этой цели я призываю Конгресс профинансировать ARPA-H, Агентство перспективных исследовательских проектов в области здравоохранения. \n\nОн основан на DARPA — проекте Министерства обороны, который привел к созданию Интернета, GPS и многого другого. \n\nARPA-H будет иметь единственную цель — добиться прорыва в лечении рака, болезни Альцгеймера, диабета и многого другого.
+Источник: 1-32
+Содержание: Раз уж мы этим занимаемся, давайте позаботимся о том, чтобы каждый американец мог получить необходимую ему медицинскую помощь. \n\nМы уже сделали исторические инвестиции в здравоохранение. \n\nМы упростили американцам получение необходимой им помощи, когда она им нужна. \n\nМы упростили американцам получение необходимого им лечения тогда, когда оно им необходимо. \n\nМы упростили американцам получение необходимых им лекарств, когда они им нужны.
+Источник: 1-33
+Содержание: В.А. разрабатывает новые способы связи токсического воздействия с болезнями, уже помогая ветеранам получить помощь, которую они заслуживают. \n\nМы должны оказать такую же заботу всем американцам. \n\nВот почему я призываю Конгресс принять закон, который учредит национальный реестр токсичных воздействий и предоставит медицинскую и финансовую помощь пострадавшим.
+Источник: 1-30
 =========
-FINAL ANSWER: The purpose of ARPA-H is to drive breakthroughs in cancer, Alzheimer’s, diabetes, and more.
-SOURCES: 1-32
+ОТВЕТ: Цель ARPA-H — добиться прорыва в лечении рака, болезни Альцгеймера, диабета и т. д.
+ИСТОЧНИКИ: 1-32.
 
 ---------
 
-QUESTION: {question}
+ВОПРОС: {question}
 =========
 {summaries}
 =========
-FINAL ANSWER:"""
+ОТВЕТ:"""
 
 STUFF_PROMPT = PromptTemplate(
     template=template, input_variables=["summaries", "question"]
