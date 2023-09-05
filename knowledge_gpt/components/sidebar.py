@@ -9,9 +9,7 @@ load_dotenv()
 
 def sidebar():
     with st.sidebar:
-        
-        st.session_state["OPENAI_API_KEY"] = os.environ.get("OPENAI_API_KEY", None)
-            or st.session_state.get("OPENAI_API_KEY", "")
+        st.session_state["OPENAI_API_KEY"] = os.environ.get("OPENAI_API_KEY", None) or st.session_state.get("OPENAI_API_KEY", "")
 
         st.markdown("---")
         st.markdown("# About")
